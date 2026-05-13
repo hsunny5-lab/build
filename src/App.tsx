@@ -205,7 +205,7 @@ const Home = () => (
           <div className="absolute -inset-4 bg-accent/10 blur-3xl rounded-full scale-75 group-hover:bg-accent/20 transition-all duration-1000 opacity-50" />
           <div className="aspect-[3/4] bg-white/5 rounded-[2rem] border border-white/10 overflow-hidden relative group-hover:border-accent/30 transition-all duration-700 shadow-2xl">
             <img 
-              src="/src/assets/images/regenerated_image_1778676462157.jpg" 
+              src="/sunny-profile.jpg" 
               alt="Sunny Hong" 
               className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
             />
@@ -364,7 +364,7 @@ const About = () => (
         <div className="space-y-4">
            <div className="aspect-[4/5] bg-white/10 rounded-2xl border border-white/20 overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-700 group">
              <img 
-               src="/src/assets/images/regenerated_image_1778676462157.jpg" 
+               src="/sunny-profile.jpg" 
                alt="Sunny Hong" 
                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
              />
@@ -536,6 +536,21 @@ const Contact = () => (
 
 // --- Main App ---
 
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location}>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/experiments" element={<Experiments />} />
+        <Route path="/now" element={<Now />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
+
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -552,15 +567,7 @@ export default function App() {
           <>
             <Navbar />
             <ScrollToTop />
-            <AnimatePresence mode="wait">
-              <Routes location={location}>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/experiments" element={<Experiments />} />
-                <Route path="/now" element={<Now />} />
-                <Route path="/contact" element={<Contact />} />
-              </Routes>
-            </AnimatePresence>
+            <AnimatedRoutes />
           </>
         )}
       </div>
